@@ -1,6 +1,6 @@
 # YouTubeClone-NullClass
 
-[https://github.com/abcxyz50312/YouTubeClone-NullClass](https://github.com/Kajal21cs1012/You_tube_clone
+https://github.com/Kajal21cs1012/You_tube_clone
 
 
 
