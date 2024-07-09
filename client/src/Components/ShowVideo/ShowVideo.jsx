@@ -6,10 +6,11 @@ function ShowVideo({vid}) {
   console.log(vid)
   return (
     <>
-     <Link to={`/videopage/${vid?._id}`}>
+     <Link to={'/'}>
+
         <video 
-        // src={`http://localhost:5500/${vid.filePath}`}
-        src={`https://youtubeclone5031.herokuapp.com/${vid.filePath}`}
+        
+        src={vid}
         className="video_ShowVideo"
         />
      </Link>
@@ -23,7 +24,7 @@ function ShowVideo({vid}) {
             <p className='title_vid_ShowVideo'>{vid?.videoTitle}</p>
             <pre className='vid_views_UploadTime'>{vid?.Uploder}</pre>
             <pre className='vid_views_UploadTime'>
-                {vid?.Views} views <div className="dot"></div> {moment(vid?.createdAt).fromNow()}
+                {vid?.Views} views <div className="dot"></div> {moment(vid?.createdat).fromNow()}
             </pre>
 
         </div>

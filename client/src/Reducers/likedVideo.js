@@ -3,7 +3,7 @@ const  likedVideoReducer =(state={data:null},action)=>{
         case 'POST_LIKEDVIDEO':
             return { ...state, data: action?.data };
         case 'FETCH_ALL_LIKED_VIDEOS':
-            return {...state,data:action.payload};
+            return {...state,data:action?.payload};
         default:
             return state;
     }
