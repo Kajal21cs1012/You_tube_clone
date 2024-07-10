@@ -6,11 +6,11 @@ function ShowVideo({vid}) {
   console.log(vid)
   return (
     <>
-     <Link to={'/'}>
+     <Link to={`/videopage/${vid._id}`}>
 
         <video 
-        
-        src={vid}
+    
+        src={`https://you-tube-clone-6uuv.onrender.com/${vid.filepath}`}
         className="video_ShowVideo"
         />
      </Link>
