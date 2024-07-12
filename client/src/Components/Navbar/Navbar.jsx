@@ -5,7 +5,8 @@ import SearchBar from "./SearchBar/SearchBar";
 import { RiVideoAddLine } from "react-icons/ri";
 import { BiUserCircle } from "react-icons/bi";
 import { useEffect } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, GoogleLogout } from "@react-oauth/google";
+
 import { gapi } from "gapi-script";
 import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
