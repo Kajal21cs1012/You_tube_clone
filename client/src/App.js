@@ -13,6 +13,8 @@ import { getAllVideo } from "./actions/video";
 import { getAlllikedVideo } from "./actions/likedVideo";
 import { getAllwatchLater } from "./actions/watchLater";
 import { getAllHistory } from "./actions/History";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 function App() {
   const dispatch = useDispatch();
   
@@ -27,6 +29,7 @@ function App() {
   const [toggleDrawerSidebar, setToggleDrawerSidebar] = useState({
     display: "none",
   });
+  
   const toggleDrawer = () => {
     if (toggleDrawerSidebar.display === "none") {
       setToggleDrawerSidebar({
@@ -38,25 +41,32 @@ function App() {
       });
     }
   };
+
   const [vidUploadPage, setVidUploadPage] = useState(false);
   const [EditCreateChanelBtn, setEditCreateChanelBtn] = useState(false);
+
   return (
     <Router>
-      {vidUploadPage && <VideoUpload  setVidUploadPage={setVidUploadPage}/>}
-      {EditCreateChanelBtn && (
-        <CreateEditChanel setEditCreateChanelBtn={setEditCreateChanelBtn} />
-      )}
-      <Navbar
-        setEditCreateChanelBtn={setEditCreateChanelBtn}
-        toggleDrawer={toggleDrawer}
-      />
+      <GoogleOAuthProvider clientId="637742925386-qkm3nvf8p2jk277q3t5ub7g2qrhructp.apps.googleusercontent.com">
+        {vidUploadPage && <VideoUpload setVidUploadPage={setVidUploadPage} />}
+        {EditCreateChanelBtn && (
+          <CreateEditChanel setEditCreateChanelBtn={setEditCreateChanelBtn} />
+        )}
+        <Navbar
+          setEditCreateChanelBtn={setEditCreateChanelBtn}
+          toggleDrawer={toggleDrawer}
+        />
 
-      <DrawerSidebar
-        toggleDrawer={toggleDrawer}
-        toggleDrawerSidebar={toggleDrawerSidebar}
-      />
+        <DrawerSidebar
+          toggleDrawer={toggleDrawer}
+          toggleDrawerSidebar={toggleDrawerSidebar}
+        />
 
-      <AllRoutes setVidUploadPage={setVidUploadPage} setEditCreateChanelBtn={setEditCreateChanelBtn} />
+        <AllRoutes
+          setVidUploadPage={setVidUploadPage}
+          setEditCreateChanelBtn={setEditCreateChanelBtn}
+        />
+      </GoogleOAuthProvider>
     </Router>
   );
 }

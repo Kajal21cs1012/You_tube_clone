@@ -1,18 +1,20 @@
 import React from "react";
-import {  GoogleLogout } from "@react-oauth/google";
+import { googleLogout } from "@react-oauth/google"; // Correct import
 import { BiLogOut } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setCurrentUser } from "../../actions/currentUser";
 import "./Auth.css";
-function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
 
+function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
   const dispatch = useDispatch();
-  const onLogOutSuccess = () => {
+
+  const handleLogout = () => {
+    googleLogout();
     dispatch(setCurrentUser(null));
-    alert("Log Out SuccessFully");
+    alert("Logged Out Successfully");
   };
-  
+
   return (
     <div className="Auth_container" onClick={() => setAuthBtn(false)}>
       <div className="Auth_container2">
@@ -31,11 +33,9 @@ function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
         <div className="btns_Auth">
           {User?.result.name ? (
             <>
-              {
-                <Link to={`/chanel/${User?.result._id}`} className="btn_Auth">
-                  Your Chanel
-                </Link>
-              }
+              <Link to={`/chanel/${User?.result._id}`} className="btn_Auth">
+                Your Chanel
+              </Link>
             </>
           ) : (
             <>
@@ -48,19 +48,9 @@ function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
             </>
           )}
 
-          <div>
-            <GoogleLogout
-              clientId={
-                "565866976001-kogc3n05n90ug8i92r0t40tl8co0fhse.apps.googleusercontent.com"
-              }
-              onLogoutSuccess={onLogOutSuccess}
-              render={(renderProps) => (
-                <div onClick={renderProps.onClick} className="btn_Auth">
-                  <BiLogOut />
-                  Log Out
-                </div>
-              )}
-            />
+          <div onClick={handleLogout} className="btn_Auth">
+            <BiLogOut />
+            Log Out
           </div>
         </div>
       </div>

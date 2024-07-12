@@ -4,15 +4,13 @@ import logo from "./logo.ico";
 import SearchBar from "./SearchBar/SearchBar";
 import { RiVideoAddLine } from "react-icons/ri";
 import { BiUserCircle } from "react-icons/bi";
-import { useEffect } from "react";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin, googleLogout } from "@react-oauth/google"; // Correct import
 import { gapi } from "gapi-script";
 import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/auth";
 import Auth from "../../Pages/Auth/Auth";
-import { GoogleLogin } from "@react-oauth/google";
 
 function Navbar({ toggleDrawer, setEditCreateChanelBtn }) {
   const [AuthBtn, setAuthBtn] = useState(false);
@@ -23,7 +21,7 @@ function Navbar({ toggleDrawer, setEditCreateChanelBtn }) {
     function start() {
       gapi.client.init({
         clientId:
-          "565866976001-kogc3n05n90ug8i92r0t40tl8co0fhse.apps.googleusercontent.com",
+          "637742925386-qkm3nvf8p2jk277q3t5ub7g2qrhructp.apps.googleusercontent.com",
         scope: "email",
       });
     }
@@ -38,6 +36,12 @@ function Navbar({ toggleDrawer, setEditCreateChanelBtn }) {
 
   const onFailure = (response) => {
     console.log("Failed", response);
+  };
+
+  const handleLogout = () => {
+    // Perform logout actions here
+    console.log("Logging out...");
+    setAuthBtn(false); // Close the authentication panel if open
   };
 
   return (
@@ -72,21 +76,22 @@ function Navbar({ toggleDrawer, setEditCreateChanelBtn }) {
         <div className="Auth_cont_Navbar">
           {CurrentUser ? (
             <>
-              <div className="Chanel_logo_App" onClick={() => setAuthBtn(true)}>
+              <div
+                className="Chanel_logo_App"
+                onClick={() => setAuthBtn(!AuthBtn)}
+              >
                 <p className="fstChar_logo_App">
-                  {CurrentUser?.result.name ? (
-                    <>{CurrentUser?.result.name.charAt(0).toUpperCase()}</>
-                  ) : (
-                    <>{CurrentUser?.result.email.charAt(0).toUpperCase()}</>
-                  )}
+                  {CurrentUser?.result.name
+                    ? CurrentUser?.result.name.charAt(0).toUpperCase()
+                    : CurrentUser?.result.email.charAt(0).toUpperCase()}
                 </p>
               </div>
-              <GoogleLogout
+              <googleLogout
                 clientId={
-                  "565866976001-kogc3n05n90ug8i92r0t40tl8co0fhse.apps.googleusercontent.com"
+                  "637742925386-qkm3nvf8p2jk277q3t5ub7g2qrhructp.apps.googleusercontent.com"
                 }
                 render={(renderProps) => (
-                  <p onClick={renderProps.onClick} className="Auth_Btn">
+                  <p onClick={() => handleLogout()} className="Auth_Btn">
                     <BiUserCircle size={22} />
                     <b>Sign out</b>
                   </p>
@@ -96,7 +101,7 @@ function Navbar({ toggleDrawer, setEditCreateChanelBtn }) {
           ) : (
             <GoogleLogin
               clientId={
-                "565866976001-kogc3n05n90ug8i92r0t40tl8co0fhse.apps.googleusercontent.com"
+                "637742925386-qkm3nvf8p2jk277q3t5ub7g2qrhructp.apps.googleusercontent.com"
               }
               onSuccess={onSuccess}
               onFailure={onFailure}
