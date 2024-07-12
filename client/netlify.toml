@@ -2,10 +2,12 @@
 base = "client"
 command = "npm run build"
 publish = "build"
-functionsDirectory = "client/functions"
+
 environment = { CI = "false" }
 
 [[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200
+
+functionsDirectory = "netlify/functions"
