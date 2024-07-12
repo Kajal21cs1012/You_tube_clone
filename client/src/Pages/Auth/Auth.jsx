@@ -1,5 +1,6 @@
 import React from "react";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, GoogleLogout } from "@react-oauth/google";
+
 import { BiLogOut } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
