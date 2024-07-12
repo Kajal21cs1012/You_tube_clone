@@ -4,7 +4,7 @@ import logo from "./logo.ico";
 import SearchBar from "./SearchBar/SearchBar";
 import { RiVideoAddLine } from "react-icons/ri";
 import { BiUserCircle } from "react-icons/bi";
-import { GoogleLogin, googleLogout } from "@react-oauth/google"; // Correct import
+import { GoogleLogin } from "@react-oauth/google"; // Correct import
 import { gapi } from "gapi-script";
 import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";

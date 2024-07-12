@@ -3,22 +3,22 @@ import { Link, useParams } from "react-router-dom";
 import Comments from "../../Components/Comments/Comments";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-// import vid from "../../Components/Video/vid.mp4";
+ import vid from "../../Components/Video/vid.mp4";
 import LikeWatchLaterSaveBtns from "./LikeWatchLaterSaveBtns";
 import "./VideoPage.css";
 import { addToHistory } from "../../actions/History";
 import { viewVideo } from "../../actions/video";
 function VideoPage() {
   const { vid } = useParams();
-  // console.log(vid)
+  console.log(vid)
 
-  // const chanels = useSelector((state) => state?.chanelReducers);
+  const chanels = useSelector((state) => state?.chanelReducers);
 
-  // console.log(Cid)
-  // const currentChanel = chanels.filter((c) => c._id === vid)[0];
+   
+  const currentChanel = chanels.filter((c) => c._id === vid)[0];
 
   const vids = useSelector((state) => state.videoReducer);
-  // console.log(vids)
+   console.log(vids)
   const vv = vids?.data.filter((q) => q._id === vid)[0];
   const dispatch = useDispatch();
   const CurrentUser = useSelector((state) => state?.currentUserReducer);
@@ -34,14 +34,14 @@ function VideoPage() {
   const handleViews=()=>{
     dispatch( viewVideo({
       id:vid
-    }))
-  }
+    }));
+  };
   useEffect(() => {
     if (CurrentUser) {
       handleHistory();
     }
     handleViews();
-  }, []);
+  }, [CurrentUser,vid]);
   return (
     <>
       <div className="container_videoPage">
