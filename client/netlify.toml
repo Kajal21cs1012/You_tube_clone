@@ -1,11 +1,11 @@
 [build]
-   base = "/opt/build/repo/client"
-  publish = "build"
-  command = "npm run build"
-  functionsDirectory = "/opt/build/repo/client/client/functions"
-  environment = { CI = "false" } 
+base = "client"
+command = "npm run build"
+publish = "build"
+functionsDirectory = "client/functions"
+environment = { CI = "false" }
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
