@@ -3,6 +3,7 @@
   publish = "client/build"
   command = "npm run build"
   functions = "client/functions"
+  environment = { CI = "false" } 
 
 [[redirects]]
   from = "/*"
