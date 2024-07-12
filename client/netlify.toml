@@ -2,7 +2,7 @@
    base = "/opt/build/repo/client"
   publish = "build"
   command = "npm run build"
-  f functionsDirectory = "/opt/build/repo/client/client/functions"
+  functionsDirectory = "/opt/build/repo/client/client/functions"
   environment = { CI = "false" } 
 
 [[redirects]]
